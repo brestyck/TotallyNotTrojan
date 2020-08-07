@@ -1,5 +1,6 @@
 import socket, platform, os
 #CONSTANTS
+#Bnet controller v3
 answerable_cmdlets = ["cat", "selftest", "ls"]
 onearg_cmdlets = ["cat", "shell", "talk", "execpy", "mkdir", "rmdir", "rm", "ls"]
 doublearg_cmdlets = ["file", "message"]
