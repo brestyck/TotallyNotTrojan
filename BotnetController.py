@@ -115,7 +115,7 @@ Commands avaliable:
 [nice] = Starts fireshow
 [update] = doesn't work yet :(
 '''
-if platform.system == "Linux":
+if platform.system() == "Linux":
     help_message = '''
 \u001b[31mCommands avaliable\u001b[39m:
 \u001b[34m[\u001b[32mcat\u001b[34m]\u001b[39m = Read a victim's file
