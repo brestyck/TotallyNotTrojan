@@ -1,5 +1,5 @@
 import socket, platform, os
-#CONSTANTS
+#CONSTANTS ADDED
 answerable_cmdlets = ["cat", "selftest", "ls"]
 onearg_cmdlets = ["cat", "shell", "talk", "execpy", "mkdir", "rmdir", "rm", "ls"]
 doublearg_cmdlets = ["file", "message"]
