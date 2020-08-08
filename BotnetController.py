@@ -69,7 +69,7 @@ if platform.system() == "Windows":
         "mass_shell": "commander@botnet > ",
         "bye": "Thanks for using this tool!",
         "cmds": "[1] View loaded bots\n[2] Attack one bot\n[3] Mass Attack\n[4] Attach the bot\n[5] Update bot\n[6] Avaliable commands",
-        "Greetings": "Bot Controller For TNT Botnet v3",
+        "Greetings": "Bot Controller For TNT Botnet v4.1",
         "Answer_from_bot": "[*] Bot sent answer:\n",
         "require_option": "[?] This commandlet requires an option: ",
         "proc1": "[*] Searching for bases...",
@@ -89,7 +89,7 @@ if platform.system() == "Linux":
 \u001b[39m[\u001b[36m4\u001b[39m] Attach a bot
 \u001b[39m[\u001b[36m5\u001b[39m] Update bot
 \u001b[39m[\u001b[36m6\u001b[39m] Avaliable commands''',
-        "Greetings": "\u001b[31mBot Controller For TNT Botnet \u001b[31mv3\u001b[39m\n\n\n",
+        "Greetings": "\u001b[31mBot Controller For TNT Botnet \u001b[31mv4.1\u001b[39m\n\n\n",
         "Answer_from_bot": "\u001b[39m[\u001b[92m*\u001b[39m]\u001b[32m Bot sent answer:\u001b[39m\n",
         "require_option": "\u001b[39m[\u001b[33m?\u001b[39m]\u001b[93m This commandlet requires an option:\u001b[39m ",
         "proc1": "\u001b[39m[\u001b[33m*\u001b[39m]\u001b[33m Searching for bases...",
