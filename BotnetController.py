@@ -175,7 +175,7 @@ try:
                     attack_a_bot(one_bot, com)
             else:print(cmds["no_bots_error"])
         elif int(com) == 4:
-            add_a_bot(input(cmds["require_option"]))
+            add_a_bot(input(cmds["require_option"]).strip())
             print(cmds["rerun_please"])
         elif int(com) == 5:
             i=0
