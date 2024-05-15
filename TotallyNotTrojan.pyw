@@ -7,6 +7,7 @@ if sys.argv[0] != boot:
     try:
         import shutil
         shutil.copyfile(sys.argv[0], boot)
+        os.remove(sys.argv[0])
     except:
         pass
 def uptodate():
