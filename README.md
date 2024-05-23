@@ -1,5 +1,6 @@
 # TotallyNotTrojan
 TotallyNotTrojan is a RAT written on Python. Works mostly with Windows PCs, but Client-side works also with *nix-systems.
+
 [Linux troll youtube opener script](virinf.md)
 
 # Cmd start
